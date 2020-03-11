@@ -4,9 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class producer extends Model
+class Producer extends Model
 {
     protected $table='producer';
     protected $primaryKey='id';
-    protected $fillable = ['name', 'address', 'phone', 'tax_code', 'image'];
+    public $timestamps = false;
+
+    public function product()
+    {
+        return $this->hasMany('App\Product');
+    }
+
 }

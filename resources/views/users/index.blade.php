@@ -10,9 +10,6 @@
         <div class="pull-left">
             <h2>Quản lý tài khoản</h2>
         </div>
-        <div class="pull-right">
-            <a href="{{route('type.create')}}" class="btn btn-success">Create New type</a>
-        </div>
     </div>
 </div>
 @if($message=Session::get('success'))
@@ -25,20 +22,24 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Image</th>
-                <th width="280px">Action</th>
+                <th>Email</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($type as $value)
+            @foreach($users as $value)
 
             <tr>
                 <td>{{$value->name}}</td>
-                <td><img src="data:image;base64, {{ $value->image }}" width="60px" height="60px"></td>
+                <td>{{$value->email}}</td>
+                <td>{{$value->created_at}}</td>
+                <td>{{$value->updated_at}}</td>
+                <td><a href="{{ route('users.show', $value->id) }}" class="btn btn-success">Show</a></td>
+                <td><a href="{{ route('users.edit', $value->id) }}" class="btn btn-warning">Edit</a></td>
                 <td>
-                    <a href="{{ route('type.show', $value->id) }}" class="btn btn-primary">Show</a>
-                    <a href="{{ route('type.edit', $value->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('type.destroy', $value->id) }}" method="POST">
+                    <form action="{{ route('users.destroy', $value->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit"

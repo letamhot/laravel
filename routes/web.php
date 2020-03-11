@@ -23,14 +23,14 @@ Route::get('404', function () {
  });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('post','PostsController');
+Route::resource('users','UsersController');
 Auth::routes();
 
-Route::get('/index', 'PostsController@index')->name('index');
-Route::get('/create', 'PostsController@create')->name('create');
-Route::get('/edit', 'PostsController@edit')->name('edit');
-Route::get('/layouts', 'PostsController@layouts')->name('layouts');
-Route::get('/show', 'PostsController@show')->name('show');
+Route::get('/index', 'UsersController@index')->name('index');
+Route::get('/create', 'UsersController@create')->name('create');
+Route::get('/edit', 'UsersController@edit')->name('edit');
+Route::get('/layouts', 'UsersController@layouts')->name('layouts');
+Route::get('/show', 'UsersController@show')->name('show');
 
 Route::resource('product','ProductController');
 Auth::routes();
@@ -39,3 +39,20 @@ Route::get('/create', 'ProductController@create')->name('create');
 Route::get('/edit', 'ProductController@edit')->name('edit');
 Route::get('/layouts', 'ProductController@layouts')->name('layouts');
 Route::get('/show', 'ProductController@show')->name('show');
+
+Route::resource('producer','ProducerController');
+Auth::routes();
+Route::get('/index', 'ProducerController@index')->name('index');
+Route::get('/create', 'ProducerController@create')->name('create');
+Route::get('/edit', 'ProducerController@edit')->name('edit');
+Route::get('/layouts', 'ProducerController@layouts')->name('layouts');
+Route::get('/show', 'ProducerController@show')->name('show');
+
+Route::resource('type','TypeController');
+Auth::routes();
+Route::get('/index', 'TypeController@index')->name('index');
+Route::get('/create', 'TypeController@create')->name('create');
+Route::get('/edit', 'TypeController@edit')->name('edit');
+Route::get('/layouts', 'TypeController@layouts')->name('layouts');
+Route::get('/show', 'TypeController@show')->name('show');
+

@@ -24,33 +24,31 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>No</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone</th>
                 <th>Tax_code</th>
                 <th>Image</th>
-                <th width="280px">Action</th>
+                <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>
             @foreach($producer as $value)
 
                 <tr>
-                    <td>{{$value->id}}</td>
                     <td>{{$value->name}}</td>
                     <td>{{$value->address}}</td>
                     <td>{{$value->phone}}</td>
                     <td>{{$value->tax_code}}</td>
                     <td><img src="data:image;base64, {{ $value->image }}" width="60px" height="60px"></td>
-                    <td>
-                         <a href="{{ route('producer.show', $value->id) }}" class="btn btn-primary">Show</a>
-                                <a href="{{ route('producer.edit', $value->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('producer.destroy', $value->id) }}" method="POST">
+                    <td><a href="{{ route('producer.show', $value->id) }}" class="btn btn-primary">Show</a></td>
+                    <td><a href="{{ route('producer.edit', $value->id) }}" class="btn btn-warning">Edit</a></td>
+                <td><form action="{{ route('producer.destroy', $value->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure to delete?')">Delete</button>
                         </form>
+                </td>
                     </td>
                 </tr>
             @endforeach

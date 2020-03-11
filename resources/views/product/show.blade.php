@@ -11,7 +11,7 @@
         </div>
     </div>
     <br>
-    
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -40,7 +40,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Image: </strong>
-                <img src="{{'data:image;base64,'.base64_encode($product->image)}}" width="60px" height="60px">
+                <img src="data:image;base64,{{$product->image}}" width="60px" height="60px">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -45,7 +45,6 @@
             <div class="form-group">
                 <strong>Image :</strong>
                 <input type="file" class="form-control" name="image" id="image">
-                {{-- <span class="text-danger">{{$errors->first('image')}}</span> --}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

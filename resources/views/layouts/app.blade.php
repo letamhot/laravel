@@ -26,6 +26,18 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <a class="navbar-brand" href="{{ url('users') }}">
+                    {{ config('app.name1', 'Users') }}
+                </a>
+                <a class="navbar-brand" href="{{ url('product') }}">
+                    {{ config('app.name2', 'Product') }}
+                </a>
+                <a class="navbar-brand" href="{{ url('producer') }}">
+                    {{ config('app.name3', 'Producer') }}
+                </a>
+                <a class="navbar-brand" href="{{ url('type') }}">
+                    {{ config('app.name4', 'Type') }}
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

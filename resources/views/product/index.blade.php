@@ -24,7 +24,6 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>No</th>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Producer</th>
@@ -38,19 +37,20 @@
             @foreach($product as $value)
 
                 <tr>
-                    <td>{{$value->id}}</td>
                     <td>{{$value->name}}</td>
                     <td>{{$value->type}}</td>
                     <td>{{$value->producer}}</td>
                     <td>{{$value->amount}}</td>
-                    <td><img src="{{'data:image;base64,'.base64_encode($value->image)}}" width="60px" height="60px"></td>
+                    <td><img src="data:image;base64, {{ $value->image }}" width="60px" height="60px"></td>
                     <td>{{$value->price_input}}</td>
                     <td>
-                         <a href="{{ route('product.show', $value->id) }}" class="label label-success">Show</a>
-                                <a href="{{ route('product.edit', $value->id) }}" class="label label-warning">Edit</a>
-                                <a href="{{ route('product.destroy', $value->id) }}" class="label label-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
-
-
+                         <a href="{{ route('product.show', $value->id) }}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('product.edit', $value->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('product.destroy', $value->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure to delete?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

@@ -11,9 +11,9 @@
         </div>
     </div>
     <br>
-    <form action="{{route('product.update',$product->id)}}" method="post" role="form">
-        <input type="hidden" name="_token" value="{{csrf_token()}}">
-        <input type="hidden" name="_method" value="PUT">
+    <form action="{{route('product.update',$product->id)}}" method="post" role="form" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group{{$errors->has('name')?' has-error':''}}">
@@ -25,14 +25,30 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group{{$errors->has('type')?' has-error':''}}">
                     <strong>Type:</strong>
-                    <textarea class="form-control" rows="10" name="type" placeholder="type">{{ $product->type }}</textarea>
+                    <select class="form-control input-width" name="type">
+                        @foreach($type as $types)
+                            <option
+                            @if($product->type == $types->id)
+                                {{ 'selected' }}
+                            @endif
+                            value="{{ $types->id }}">{{ $types->name }}</option>
+                        @endforeach
+                    </select>
                     <span class="text-danger">{{$errors->first('type')}}</span>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group{{$errors->has('producer')?' has-error':''}}">
                     <strong>Producer:</strong>
-                    <textarea class="form-control" rows="10" name="producer" placeholder="producer">{{ $product->producer }}</textarea>
+                    <select class="form-control input-width" name="producer">
+                        @foreach($producer as $producers)
+                            <option
+                            @if($product->producer == $producers->id)
+                                {{ 'selected' }}
+                            @endif
+                            value="{{ $producers->id }}">{{ $producers->name }}</option>
+                        @endforeach
+                    </select>
                     <span class="text-danger">{{$errors->first('producer')}}</span>
                 </div>
             </div>
@@ -47,7 +63,7 @@
                 <div class="form-group{{$errors->has('image')?' has-error':''}}">
                     <strong>Image:</strong>
                     <input type="file" class="form-control" name="image" id="image">
-                        <img src="<?= 'data:image;base64,'.base64_encode($product->image)?> " width="60px" height="60px">
+                        <img src="data:image;base64,{{ $product->image }} " width="60px" height="60px">
                     <span class="text-danger">{{$errors->first('image')}}</span>
                 </div>
             </div>

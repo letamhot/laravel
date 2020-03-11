@@ -10,8 +10,8 @@
         </div>
     </div>
 </div>
-<form action="{{route('product.store')}}" method="post">
-    <input type="hidden" name="_token" value="{{csrf_token()}}">
+<form action="{{route('product.store')}}" method="post" enctype="multipart/form-data" >
+    @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group{{$errors->has('name')?' has-error':''}}">
@@ -23,16 +23,27 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group{{$errors->has('type')?' has-error':''}}">
                 <strong>Type :</strong>
-                {{-- <textarea name="type" id="type"  rows="10" placeholder="type" class="form-control"></textarea>
-                    <span class="text-danger">{{$errors->first('type')}}</span> --}}
+                {{-- <textarea name="type" id="type" rows="10" placeholder="type" class="form-control"></textarea>
+                 --}}
+                 <select class="form-control input-width" name="type">
+                    @foreach($type as $types)
+                        <option value="{{ $types->id }}">{{ $types->name }}</option>
+                    @endforeach
+                </select>
+                <span class="text-danger">{{$errors->first('type')}}</span>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group{{$errors->has('producer')?' has-error':''}}">
                 <strong>Producer :</strong>
                 {{-- <textarea name="producer" id="producer" rows="10" placeholder="producer"
-                    class="form-control"></textarea>
-                <span class="text-danger">{{$errors->first('producer')}}</span> --}}
+                    class="form-control"></textarea> --}}
+                    <select class="form-control input-width" name="producer">
+                        @foreach($producer as $producers)
+                            <option value="{{ $producers->id }}">{{ $producers->name }}</option>
+                        @endforeach
+                    </select>
+                <span class="text-danger">{{$errors->first('producer')}}</span>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -43,10 +54,10 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group{{$errors->has('image')?' has-error':''}}">
+            <div class="form-group">
                 <strong>Image :</strong>
                 <input type="file" class="form-control" name="image" id="image">
-                <span class="text-danger">{{$errors->first('image')}}</span>
+                {{--  <span class="text-danger">{{$errors->first('image')}}</span>  --}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
