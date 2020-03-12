@@ -24,9 +24,10 @@ class CreateProductTable extends Migration
             $table->binary('image');
             $table->string('price_input');
             $table->boolean('flag');
+            $table->timestamps();
         });
     }
-
+    // đm tạo db khác
     /**
      * Reverse the migrations.
      *

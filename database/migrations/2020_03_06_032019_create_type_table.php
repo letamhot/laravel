@@ -18,6 +18,7 @@ class CreateTypeTable extends Migration
             $table->string('name');
             $table->binary('image');
             $table->boolean('flag');
+            $table->timestamps();
         });
     }
 

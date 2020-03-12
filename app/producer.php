@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producer extends Model
 {
-    protected $table='producer';
-    protected $primaryKey='id';
-    public $timestamps = false;
+    protected $table = 'producer';
+    protected $primaryKey = 'id';
+    // public $timestamps = false;
 
     public function product()
     {
         return $this->hasMany('App\Product');
     }
-
 }

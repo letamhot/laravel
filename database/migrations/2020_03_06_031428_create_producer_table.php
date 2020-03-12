@@ -21,6 +21,7 @@ class CreateProducerTable extends Migration
             $table->bigInteger('tax_code');
             $table->binary('image');
             $table->boolean('flag');
+            $table->timestamps();
         });
     }
 

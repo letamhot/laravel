@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Producer;
+use Session;
+
 
 class ProducerController extends Controller
 {
@@ -16,7 +18,7 @@ class ProducerController extends Controller
     public function index()
     {
         if (Auth::check()) {
-        $producer = producer::all();
+            $producer = producer::all();
             return view('producer.index', compact('producer'));
         } else {
             return view('admin.404');
@@ -47,15 +49,15 @@ class ProducerController extends Controller
             'phone' => 'required',
             'tax_code' => 'required',
             // 'image' => 'required',
-         ]);
-         $producer = new Producer();
-         $producer->name = $request->name;
-         $producer->address = $request->address;
-         $producer->phone = $request->phone;
-         $producer->tax_code = $request->tax_code;
-         $producer->image = base64_encode(file_get_contents($request->file('image')->getRealPath()));
-         $producer->save();
-         return redirect()->route('producer.index')->with('success','Producer Created successfully');
+        ]);
+        $producer = new Producer();
+        $producer->name = $request->name;
+        $producer->address = $request->address;
+        $producer->phone = $request->phone;
+        $producer->tax_code = $request->tax_code;
+        $producer->image = base64_encode(file_get_contents($request->file('image')->getRealPath()));
+        $producer->save();
+        return redirect()->route('producer.index')->with('success', 'Producer Created successfully');
     }
 
     /**
@@ -67,7 +69,7 @@ class ProducerController extends Controller
     public function show($id)
     {
         $producer = Producer::findOrFail($id);
-        return view('producer.show',compact('producer'));
+        return view('producer.show', compact('producer'));
     }
 
     /**
@@ -78,8 +80,8 @@ class ProducerController extends Controller
      */
     public function edit($id)
     {
-        $producer = Producer::find( $id );
-        return view( 'producer.edit', compact( 'producer' ) );
+        $producer = Producer::find($id);
+        return view('producer.edit', compact('producer'));
     }
 
     /**
@@ -96,8 +98,8 @@ class ProducerController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'tax_code' => 'required',
-         ]);
-         $producer = Producer::findOrfail($id);
+        ]);
+        $producer = Producer::findOrfail($id);
         $producer->name = $request->name;
         $producer->address = $request->address;
         $producer->phone = $request->phone;
@@ -106,7 +108,7 @@ class ProducerController extends Controller
             $producer->image = base64_encode(file_get_contents($request->file('image')->getRealPath()));
         }
         $producer->save();
-         return redirect()->route('producer.index')->with('success','Producer Updated successfully');
+        return redirect()->route('producer.index')->with('success', 'Producer Updated successfully');
     }
 
     /**

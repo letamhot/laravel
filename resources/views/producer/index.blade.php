@@ -8,7 +8,7 @@
         <div class="col-lg-12 margin-tb" style="margin-top: 20px;">
 
             <div class="pull-left">
-                <h2>Quản lý tài khoản</h2>
+                <h2>List Producer</h2>
             </div>
             <div class="pull-right">
                 <a href="{{route('producer.create')}}" class="btn btn-success">Create New Producer</a>

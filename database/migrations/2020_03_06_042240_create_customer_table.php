@@ -25,6 +25,7 @@ class CreateCustomerTable extends Migration
             $table->bigInteger('users')->unsigned();
             $table->foreign('users')->references('id')->on('users');
             $table->boolean('flag');
+            $table->timestamps();
         });
     }
 
